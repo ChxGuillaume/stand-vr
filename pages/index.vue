@@ -1,9 +1,15 @@
 <template>
   <v-row justify-md="center" justify-lg="start">
-    <v-col cols="12" class="mt-3 mb-10">
-      <h1 class="text-h1 text-center">
+    <v-col cols="12" class="mt-3 text-center">
+      <h1 class="text-h1">
         Stand VR
       </h1>
+      <v-img
+        :src="require('assets/valveindex.png')"
+        alt="Index Headset"
+        width="250"
+        class="mx-auto my-5"
+      />
     </v-col>
     <v-col
       v-for="[index, game] of games.entries()"
@@ -124,7 +130,7 @@ export default {
         case 'high':
           return 'red'
         case 'help':
-          return 'black'
+          return 'grey darken-2'
         default:
           return value
       }
@@ -166,7 +172,7 @@ export default {
         {
           name: 'The Lab',
           image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/450390/header.jpg?t=1632787478',
-          description: 'Un court jeu d’initiation à la VR pour les plus novices !',
+          description: 'Votre but est d\'empêcher l\'invasion de votre château à l\'aide d\'un arc et de flèches !',
           stand: { n: true, t: true },
           experience: 'starter',
           sickness: 'low'
@@ -174,7 +180,7 @@ export default {
         {
           name: 'Aperture Hand Lab',
           image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/868020/header.jpg?t=1633960446',
-          description: '',
+          description: 'Un court jeu d’initiation à la VR pour les plus novices !',
           stand: { n: true, t: true },
           experience: 'starter',
           sickness: 'low'
@@ -182,61 +188,104 @@ export default {
         {
           name: 'Moss',
           image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/846470/header.jpg?t=1623173225',
-          description: '',
-          stand: { n: true, t: true },
+          description: 'Jeu de plateau, le but est de faire progresser une petite sourie, Moss, en résolvant des énigmes et libérant des passages pour atteindre ses objectifs !',
+          stand: { n: false, t: true },
           experience: 'starter',
           sickness: 'low'
         },
         {
           name: 'Beat Saber',
-          image: '',
-          description: '',
+          image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/620980/header.jpg?t=1635336215',
+          description: 'Let\'s dance, Let’s break, Score those cubes !',
           stand: { n: true, t: true },
           experience: 'newbie',
           sickness: 'low'
         },
         {
           name: 'Ragnarock',
-          image: '',
-          description: '',
-          stand: { n: true, t: true },
+          image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1345820/header.jpg?t=1635421189',
+          description: 'Ragnarock, c’est Beat Saber mais pour les vrais Vikings !!',
+          stand: { n: true, t: false },
           experience: 'newbie',
           sickness: 'low'
         },
         {
           name: 'SuperHot',
-          image: '',
-          description: '',
+          image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/617830/header.jpg?t=1635043058',
+          description: 'Aidez-vous du temps pour venir à bout de vos ennemis. Chaque geste compte ! Ne vous faites pas avoir !',
           stand: { n: true, t: true },
           experience: 'newbie',
           sickness: 'medium'
         },
         {
           name: 'The Room VR',
-          image: '',
-          description: '',
-          stand: { n: true, t: true },
+          image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1104380/header.jpg?t=1634217668',
+          description: 'A Dark Mater : Un jeu d’énigme en VR, incarnez la peau d’un enquêteur pour percer les mystères des différents niveaux !',
+          stand: { n: false, t: true },
           experience: 'newbie',
           sickness: 'low'
         },
         {
           name: 'Counter Fight',
-          image: '',
-          description: '',
-          stand: { n: true, t: true },
+          image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/593210/header.jpg?t=1620317549',
+          description: 'Samurai Edition : Vous avez toujours rêvé de travailler dans un restaurant Japonais ? Révisez vos recettes ! Itadakimasu !',
+          stand: { n: false, t: true },
           experience: 'newbie',
           sickness: 'low'
         },
         {
           name: 'Zero Caliber',
-          image: '',
-          description: '',
-          stand: { n: true, t: true },
+          image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/877200/header.jpg?t=1633726434',
+          description: 'Zero Caliber ce sont des missions avec des Guns pew pew, il faut tuer les pas gentils et allez au bout de la mission.',
+          stand: { n: true, t: false },
           experience: 'newbie',
+          sickness: 'medium'
+        },
+        {
+          name: 'Blade & Sorcery',
+          image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/629730/header.jpg?t=1635255837',
+          description: 'Coupez vos ennemis dans une arène en mode Sandbox, testez différentes armes, ou même, facultés magiques, pour les plus expérimentés !',
+          stand: { n: false, t: true },
+          experience: 'experimented',
+          sickness: 'high'
+        },
+        {
+          name: 'Project Cars 2',
+          image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/378860/header.jpg?t=1610244943',
+          description: 'Prenez place sur la grille de départ à bord d’un bolide survolté !',
+          stand: { n: false, t: true },
+          experience: 'experimented',
+          sickness: 'high'
+        },
+        {
+          name: 'Half Life Alyx',
+          image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/546560/header.jpg?t=1634491270',
+          description: 'Gordon Freeman ?',
+          stand: { n: false, t: true },
+          experience: 'experimented',
+          sickness: 'medium'
+        },
+        {
+          name: 'Propagation VR',
+          image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1363430/header.jpg?t=1635211399',
+          description: 'Un jeu de tir statique entouré de zombies… Attention aux âmes sensibles !',
+          stand: { n: false, t: true },
+          experience: 'experimented',
           sickness: 'low'
+        },
+        {
+          name: 'BoneWorks',
+          image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/823500/header.jpg?t=1633971106',
+          description: 'Le bon jeu de la gerbe, globalement BoneWorks c’est de la simulation de physique, on peut prendre des objets, des armes et tuer des mobs giga chelou...',
+          stand: { n: true, t: false },
+          experience: 'experimented',
+          sickness: 'help'
         }
       ]
     }
+  },
+  head: {
+    title: 'Stand VR'
   }
 }
 </script>
