@@ -21,23 +21,26 @@
           :class="{ 'flex-md-row-reverse': (index % 2), 'flex-md-row': !(index % 2) }"
         >
           <v-img
-            class="rounded"
-            width="385"
-            max-width="min(100%, 385px)"
-            max-height="180"
+            class="rounded ma-3"
+            width="449"
+            max-width="min(100%, 449px)"
+            max-height="210"
             :aspect-ratio="92 / 43"
             :src="game.image"
           />
 
           <div class="flex-grow-1">
-            <v-card-title class="text-h5 text-center mx-auto" v-text="game.name" />
+            <v-card-title class="text-h5 text-center mx-auto mb-3" v-text="game.name" />
 
             <v-card-subtitle>
-              <v-chip>
-                {{ game.experience }}
+              <v-chip :color="game.experience|experienceColor" outlined>
+                Type {{ game.experience|experienceName }}
               </v-chip>
-              <v-chip class="ml-3">
-                {{ game.sickness }}
+              <v-chip :color="game.sickness|sicknessColor" outlined class="ml-3">
+                <v-icon left>
+                  {{ game.sickness|sicknessIcon }}
+                </v-icon>
+                Gerbe {{ game.sickness|sicknessName }}
               </v-chip>
             </v-card-subtitle>
 
@@ -47,21 +50,21 @@
               <v-btn
                 v-if="game.stand.n"
                 class="ma-2 px-4"
-                color="green"
+                color="primary"
                 rounded
                 large
               >
-                Réserver (Stand N)
+                Stand Code N
               </v-btn>
 
               <v-btn
                 v-if="game.stand.t"
                 class="ma-2 px-4"
-                color="blue"
+                color="primary"
                 rounded
                 large
               >
-                Réserver (Stand T)
+                Stand Code T
               </v-btn>
             </v-card-actions>
           </div>
@@ -73,6 +76,74 @@
 
 <script>
 export default {
+  filters: {
+    experienceName (value) {
+      switch (value) {
+        case 'starter':
+          return 'Découverte'
+        case 'newbie':
+          return 'Standard'
+        case 'experimented':
+          return 'Expérimenté'
+        default:
+          return value
+      }
+    },
+    experienceColor (value) {
+      switch (value) {
+        case 'starter':
+          return 'green'
+        case 'newbie':
+          return 'orange'
+        case 'experimented':
+          return 'red'
+        default:
+          return 'grey'
+      }
+    },
+    sicknessName (value) {
+      switch (value) {
+        case 'low':
+          return 'Faible'
+        case 'medium':
+          return 'Moyenne'
+        case 'high':
+          return 'Élevé'
+        case 'help':
+          return 'Send Help'
+        default:
+          return value
+      }
+    },
+    sicknessColor (value) {
+      switch (value) {
+        case 'low':
+          return 'green'
+        case 'medium':
+          return 'orange'
+        case 'high':
+          return 'red'
+        case 'help':
+          return 'black'
+        default:
+          return value
+      }
+    },
+    sicknessIcon (value) {
+      switch (value) {
+        case 'low':
+          return 'mdi-emoticon'
+        case 'medium':
+          return 'mdi-emoticon-neutral'
+        case 'high':
+          return 'mdi-emoticon-dead'
+        case 'help':
+          return 'mdi-emoticon-devil'
+        default:
+          return value
+      }
+    }
+  },
   data () {
     return {
       games: [
@@ -98,6 +169,70 @@ export default {
           description: 'Un court jeu d’initiation à la VR pour les plus novices !',
           stand: { n: true, t: true },
           experience: 'starter',
+          sickness: 'low'
+        },
+        {
+          name: 'Aperture Hand Lab',
+          image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/868020/header.jpg?t=1633960446',
+          description: '',
+          stand: { n: true, t: true },
+          experience: 'starter',
+          sickness: 'low'
+        },
+        {
+          name: 'Moss',
+          image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/846470/header.jpg?t=1623173225',
+          description: '',
+          stand: { n: true, t: true },
+          experience: 'starter',
+          sickness: 'low'
+        },
+        {
+          name: 'Beat Saber',
+          image: '',
+          description: '',
+          stand: { n: true, t: true },
+          experience: 'newbie',
+          sickness: 'low'
+        },
+        {
+          name: 'Ragnarock',
+          image: '',
+          description: '',
+          stand: { n: true, t: true },
+          experience: 'newbie',
+          sickness: 'low'
+        },
+        {
+          name: 'SuperHot',
+          image: '',
+          description: '',
+          stand: { n: true, t: true },
+          experience: 'newbie',
+          sickness: 'medium'
+        },
+        {
+          name: 'The Room VR',
+          image: '',
+          description: '',
+          stand: { n: true, t: true },
+          experience: 'newbie',
+          sickness: 'low'
+        },
+        {
+          name: 'Counter Fight',
+          image: '',
+          description: '',
+          stand: { n: true, t: true },
+          experience: 'newbie',
+          sickness: 'low'
+        },
+        {
+          name: 'Zero Caliber',
+          image: '',
+          description: '',
+          stand: { n: true, t: true },
+          experience: 'newbie',
           sickness: 'low'
         }
       ]
