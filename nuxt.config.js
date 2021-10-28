@@ -17,8 +17,14 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { hid: 'description', name: 'description', content: 'Détails & Réservation du stand VR' },
+      { name: 'format-detection', content: 'telephone=no' },
+      { property: 'og:title', content: 'Stand VR' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:url', content: 'https://lalan.nekotiki.fr/' },
+      { property: 'og:image', content: 'https://lalan.nekotiki.fr/valveindex.png' },
+      { property: 'og:description', content: 'Détails & Réservation du stand VR' },
+      { name: 'theme-color', content: '#ffffff' }
     ],
     link: [
       { rel: 'icon', type: 'image/png', href: '/valveindex.png' }

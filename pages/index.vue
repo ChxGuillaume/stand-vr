@@ -1,83 +1,92 @@
 <template>
-  <v-row justify-md="center" justify-lg="start">
-    <v-col cols="12" class="mt-3 text-center">
-      <h1 class="text-h1">
-        Stand VR
-      </h1>
-      <v-img
-        :src="require('assets/valveindex.png')"
-        alt="Index Headset"
-        width="250"
-        class="mx-auto my-5"
-      />
-    </v-col>
-    <v-col
-      v-for="[index, game] of games.entries()"
-      :key="game.name"
-      class="d-flex justify-center"
-      cols="12"
-      lg="9"
-      :offset-lg="index % 2 ? 3 : 0"
-      xl="8"
-      :offset-xl="index % 2 ? 3 : 1"
-    >
-      <v-card dark class="card_test flex-grow-1">
-        <div
-          class="d-flex flex-no-wrap justify-lg-space-between flex-column align-center"
-          :class="{ 'flex-md-row-reverse': (index % 2), 'flex-md-row': !(index % 2) }"
-        >
-          <v-img
-            class="rounded ma-3"
-            width="449"
-            max-width="min(100%, 449px)"
-            max-height="210"
-            :aspect-ratio="92 / 43"
-            :src="game.image"
-          />
+  <v-container>
+    <v-row justify-md="center" justify-lg="start">
+      <v-col cols="12" class="mt-3 text-center">
+        <h1 class="text-h1">
+          Stand VR
+        </h1>
+        <v-img
+          :src="require('assets/valveindex.png')"
+          alt="Index Headset"
+          width="250"
+          class="mx-auto my-5"
+        />
+      </v-col>
+      <v-col
+        v-for="[index, game] of games.entries()"
+        :key="game.name"
+        class="d-flex justify-center"
+        cols="12"
+        lg="9"
+        :offset-lg="index % 2 ? 3 : 0"
+        xl="8"
+        :offset-xl="index % 2 ? 3 : 1"
+      >
+        <v-card dark class="card_test flex-grow-1">
+          <div
+            class="d-flex flex-no-wrap justify-lg-space-between flex-column align-center"
+            :class="{ 'flex-md-row-reverse': (index % 2), 'flex-md-row': !(index % 2) }"
+          >
+            <v-img
+              class="rounded ma-3"
+              width="449"
+              max-width="min(100% - 24px, 449px)"
+              max-height="210"
+              :aspect-ratio="92 / 43"
+              :src="game.image"
+            />
 
-          <div class="flex-grow-1">
-            <v-card-title class="text-h5 text-center mx-auto mb-3" v-text="game.name" />
+            <div class="flex-grow-1">
+              <v-card-title class="text-h5 text-center mx-auto mb-3" v-text="game.name" />
 
-            <v-card-subtitle>
-              <v-chip :color="game.experience|experienceColor" outlined>
-                Type {{ game.experience|experienceName }}
-              </v-chip>
-              <v-chip :color="game.sickness|sicknessColor" outlined class="ml-3">
-                <v-icon left>
-                  {{ game.sickness|sicknessIcon }}
-                </v-icon>
-                Gerbe {{ game.sickness|sicknessName }}
-              </v-chip>
-            </v-card-subtitle>
+              <v-card-subtitle>
+                <v-chip :color="game.experience|experienceColor" outlined>
+                  <v-icon left>
+                    {{ game.experience|experienceIcon }}
+                  </v-icon>
+                  Type {{ game.experience|experienceName }}
+                </v-chip>
+                <v-chip :color="game.sickness|sicknessColor" outlined class="ml-3">
+                  <v-icon left>
+                    {{ game.sickness|sicknessIcon }}
+                  </v-icon>
+                  Gerbe {{ game.sickness|sicknessName }}
+                </v-chip>
+              </v-card-subtitle>
 
-            <div class="px-3" v-text="game.description" />
+              <div class="px-3" v-text="game.description" />
 
-            <v-card-actions class="justify-center flex-column flex-md-row mt-3">
-              <v-btn
-                v-if="game.stand.n"
-                class="ma-2 px-4"
-                color="primary"
-                rounded
-                large
-              >
-                Stand Code N
-              </v-btn>
+              <v-card-actions class="justify-center flex-column flex-md-row mt-3">
+                <v-btn
+                  v-if="game.stand.n"
+                  class="ma-2 px-4"
+                  color="primary"
+                  rounded
+                  large
+                  target="_blank"
+                  href="https://nekotiki.fr/stand-n/"
+                >
+                  Stand Code N
+                </v-btn>
 
-              <v-btn
-                v-if="game.stand.t"
-                class="ma-2 px-4"
-                color="primary"
-                rounded
-                large
-              >
-                Stand Code T
-              </v-btn>
-            </v-card-actions>
+                <v-btn
+                  v-if="game.stand.t"
+                  class="ma-2 px-4"
+                  color="primary"
+                  rounded
+                  large
+                  target="_blank"
+                  href="https://nekotiki.fr/stand-t/"
+                >
+                  Stand Code T
+                </v-btn>
+              </v-card-actions>
+            </div>
           </div>
-        </div>
-      </v-card>
-    </v-col>
-  </v-row>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -105,6 +114,18 @@ export default {
           return 'red'
         default:
           return 'grey'
+      }
+    },
+    experienceIcon (value) {
+      switch (value) {
+        case 'starter':
+          return 'mdi-new-box'
+        case 'newbie':
+          return 'mdi-google-controller'
+        case 'experimented':
+          return 'mdi-emoticon-cool'
+        default:
+          return value
       }
     },
     sicknessName (value) {
@@ -210,14 +231,6 @@ export default {
           sickness: 'low'
         },
         {
-          name: 'SuperHot',
-          image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/617830/header.jpg?t=1635043058',
-          description: 'Aidez-vous du temps pour venir à bout de vos ennemis. Chaque geste compte ! Ne vous faites pas avoir !',
-          stand: { n: true, t: true },
-          experience: 'newbie',
-          sickness: 'medium'
-        },
-        {
           name: 'The Room VR',
           image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1104380/header.jpg?t=1634217668',
           description: 'A Dark Mater : Un jeu d’énigme en VR, incarnez la peau d’un enquêteur pour percer les mystères des différents niveaux !',
@@ -234,11 +247,43 @@ export default {
           sickness: 'low'
         },
         {
+          name: 'SuperHot',
+          image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/617830/header.jpg?t=1635043058',
+          description: 'Aidez-vous du temps pour venir à bout de vos ennemis. Chaque geste compte ! Ne vous faites pas avoir !',
+          stand: { n: true, t: true },
+          experience: 'newbie',
+          sickness: 'medium'
+        },
+        {
           name: 'Zero Caliber',
           image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/877200/header.jpg?t=1633726434',
           description: 'Zero Caliber ce sont des missions avec des Guns pew pew, il faut tuer les pas gentils et allez au bout de la mission.',
           stand: { n: true, t: false },
           experience: 'newbie',
+          sickness: 'medium'
+        },
+        {
+          name: 'Propagation VR',
+          image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1363430/header.jpg?t=1635211399',
+          description: 'Un jeu de tir statique entouré de zombies… Attention aux âmes sensibles !',
+          stand: { n: false, t: true },
+          experience: 'experimented',
+          sickness: 'low'
+        },
+        {
+          name: 'Half Life Alyx',
+          image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/546560/header.jpg?t=1634491270',
+          description: 'Gordon Freeman ?',
+          stand: { n: false, t: true },
+          experience: 'experimented',
+          sickness: 'medium'
+        },
+        {
+          name: 'VRChat',
+          image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/438100/header.jpg?t=1635454479',
+          description: 'Alors, VRChat c\'est cool mais bon, plein de trucs a faire je sais pas quoi vous faire faire, t\'as quand meme envie ? :D',
+          stand: { n: false, t: true },
+          experience: 'experimented',
           sickness: 'medium'
         },
         {
@@ -256,22 +301,6 @@ export default {
           stand: { n: false, t: true },
           experience: 'experimented',
           sickness: 'high'
-        },
-        {
-          name: 'Half Life Alyx',
-          image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/546560/header.jpg?t=1634491270',
-          description: 'Gordon Freeman ?',
-          stand: { n: false, t: true },
-          experience: 'experimented',
-          sickness: 'medium'
-        },
-        {
-          name: 'Propagation VR',
-          image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/1363430/header.jpg?t=1635211399',
-          description: 'Un jeu de tir statique entouré de zombies… Attention aux âmes sensibles !',
-          stand: { n: false, t: true },
-          experience: 'experimented',
-          sickness: 'low'
         },
         {
           name: 'BoneWorks',
