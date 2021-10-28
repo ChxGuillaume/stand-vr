@@ -282,7 +282,7 @@ export default {
           name: 'VRChat',
           image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/438100/header.jpg?t=1635454479',
           description: 'Alors, VRChat c\'est cool mais bon, plein de trucs a faire je sais pas quoi vous faire faire, t\'as quand meme envie ? :D',
-          stand: { n: false, t: true },
+          stand: { n: true, t: false },
           experience: 'experimented',
           sickness: 'medium'
         },
