@@ -297,7 +297,7 @@ export default {
         {
           name: 'Project Cars 2',
           image: 'https://cdn.cloudflare.steamstatic.com/steam/apps/378860/header.jpg?t=1610244943',
-          description: 'Prenez place sur la grille de départ à bord d’un bolide survolté !',
+          description: 'Prenez place sur la grille de départ à bord d’un bolide survolté ! (Volant et pédales mis à disposition)',
           stand: { n: false, t: true },
           experience: 'experimented',
           sickness: 'high'
